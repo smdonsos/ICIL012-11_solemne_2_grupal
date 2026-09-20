@@ -26,43 +26,43 @@ public class PruebaRobustezLectorCSV {
 
         // --- Casos sobre ciudadanos_santiago.csv ---
         verificarCiudadanos("ciudadanos_test_campos_obligatorios_vacios.csv", 100, 80,
-                new String[] {"Numero de columnas incorrecto", "Campo 'id' vacio", "Campo 'nombre' vacio",
+                new String[] {"Numero de columnas incorrecto", "Campo 'id' vacio o comodin", "Campo 'nombre' vacio o comodin",
                         "Campo 'latitud' invalido", "Campo 'longitud' invalido"},
                 new int[] {0, 10, 10, 0, 0});
 
         verificarCiudadanos("ciudadanos_test_valores_numericos_invalidos.csv", 100, 80,
-                new String[] {"Numero de columnas incorrecto", "Campo 'id' vacio", "Campo 'nombre' vacio",
+                new String[] {"Numero de columnas incorrecto", "Campo 'id' vacio o comodin", "Campo 'nombre' vacio o comodin",
                         "Campo 'latitud' invalido", "Campo 'longitud' invalido"},
                 new int[] {0, 0, 0, 10, 10});
 
         verificarCiudadanos("ciudadanos_test_columnas_incorrectas.csv", 100, 70,
-                new String[] {"Numero de columnas incorrecto", "Campo 'id' vacio", "Campo 'nombre' vacio",
+                new String[] {"Numero de columnas incorrecto", "Campo 'id' vacio o comodin", "Campo 'nombre' vacio o comodin",
                         "Campo 'latitud' invalido", "Campo 'longitud' invalido"},
                 new int[] {30, 0, 0, 0, 0});
 
         verificarCiudadanos("ciudadanos_test_campos_opcionales_vacios.csv", 100, 100,
-                new String[] {"Numero de columnas incorrecto", "Campo 'id' vacio", "Campo 'nombre' vacio",
+                new String[] {"Numero de columnas incorrecto", "Campo 'id' vacio o comodin", "Campo 'nombre' vacio o comodin",
                         "Campo 'latitud' invalido", "Campo 'longitud' invalido"},
                 new int[] {0, 0, 0, 0, 0});
 
         // --- Casos sobre colegios_santiago.csv ---
         verificarColegios("colegios_test_campos_obligatorios_vacios.csv", 100, 80,
-                new String[] {"Numero de columnas incorrecto", "Campo 'codigo' vacio", "Campo 'nombre' vacio",
+                new String[] {"Numero de columnas incorrecto", "Campo 'codigo' vacio o comodin", "Campo 'nombre' vacio o comodin",
                         "Campo 'latitud' invalido", "Campo 'longitud' invalido", "Campo 'capacidadMaxima' invalido"},
                 new int[] {0, 10, 10, 0, 0, 0});
 
         verificarColegios("colegios_test_valores_numericos_invalidos.csv", 100, 70,
-                new String[] {"Numero de columnas incorrecto", "Campo 'codigo' vacio", "Campo 'nombre' vacio",
+                new String[] {"Numero de columnas incorrecto", "Campo 'codigo' vacio o comodin", "Campo 'nombre' vacio o comodin",
                         "Campo 'latitud' invalido", "Campo 'longitud' invalido", "Campo 'capacidadMaxima' invalido"},
                 new int[] {0, 0, 0, 10, 10, 10});
 
         verificarColegios("colegios_test_columnas_incorrectas.csv", 100, 70,
-                new String[] {"Numero de columnas incorrecto", "Campo 'codigo' vacio", "Campo 'nombre' vacio",
+                new String[] {"Numero de columnas incorrecto", "Campo 'codigo' vacio o comodin", "Campo 'nombre' vacio o comodin",
                         "Campo 'latitud' invalido", "Campo 'longitud' invalido", "Campo 'capacidadMaxima' invalido"},
                 new int[] {30, 0, 0, 0, 0, 0});
 
         verificarColegios("colegios_test_campos_opcionales_vacios.csv", 100, 100,
-                new String[] {"Numero de columnas incorrecto", "Campo 'codigo' vacio", "Campo 'nombre' vacio",
+                new String[] {"Numero de columnas incorrecto", "Campo 'codigo' vacio o comodin", "Campo 'nombre' vacio o comodin",
                         "Campo 'latitud' invalido", "Campo 'longitud' invalido", "Campo 'capacidadMaxima' invalido"},
                 new int[] {0, 0, 0, 0, 0, 0});
 
