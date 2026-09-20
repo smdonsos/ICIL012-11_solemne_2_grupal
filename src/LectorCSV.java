@@ -11,15 +11,22 @@ import java.util.ArrayList;
  *
  * Cada fila se valida antes de crear el objeto. Los campos obligatorios (los que efectivamente usa el resto
  * del programa: id/nombre/latitud/longitud en Ciudadano; codigo/nombre/latitud/longitud/capacidadMaxima en
- * Colegio) hacen descartar la fila si faltan o son invalidos. Los campos opcionales (rut, comuna) nunca se
- * consultan via getter en el resto del programa hoy, asi que si vienen vacios se completan con un valor por
- * defecto en vez de descartar la fila completa.
+ * Colegio) hacen descartar la fila si faltan, son un comodin (ver TOKENS_SIN_DATO) o son invalidos. Los
+ * campos opcionales (rut, comuna) nunca se consultan via getter en el resto del programa hoy, asi que si
+ * vienen vacios o son un comodin se completan con un valor por defecto en vez de descartar la fila completa.
+ *
+ * Las columnas se separan con dividirLineaCSV() en vez de String.split(","), para poder leer
+ * correctamente un campo que contenga una coma dentro de comillas dobles (ej. un nombre de colegio como
+ * "Liceo, Sede Centro").
  */
 public class LectorCSV {
 
     private static final int COLUMNAS_CIUDADANO = 6;
     private static final int COLUMNAS_COLEGIO = 6;
     private static final String VALOR_OPCIONAL_POR_DEFECTO = "SIN DATO";
+
+    // Valores que, aunque la celda no este realmente vacia, en la practica significan "sin dato".
+    private static final String[] TOKENS_SIN_DATO = {"", "N/A", "S/D", "-", "?"};
 
     /**
      * Lee el archivo de ciudadanos y devuelve una lista de objetos Ciudadano, uno por cada fila valida del
@@ -68,9 +75,8 @@ public class LectorCSV {
 
             filasTotales++;
 
-            // Se separan las columnas por coma. El limite -1 evita que se pierda un campo vacio
-            // al final de la linea (por defecto, split() descarta los campos vacios finales).
-            String[] datos = linea.split(",", -1);
+            // Se separan las columnas respetando comillas (ver dividirLineaCSV).
+            String[] datos = dividirLineaCSV(linea);
 
             if (datos.length != COLUMNAS_CIUDADANO) {
                 columnasIncorrectas++;
@@ -83,20 +89,20 @@ public class LectorCSV {
 
             // Se arma cada campo. trim() saca espacios (y el retorno de carro \r que dejan los archivos guardados en Windows).
             String id = datos[0].trim();
-            if (id.isEmpty()) {
+            if (esValorFaltante(id)) {
                 idVacio++;
                 System.out.println("Fila descartada (linea " + numeroLineaArchivo + " de "
-                        + rutaArchivo + "): el campo obligatorio 'id' esta vacio");
+                        + rutaArchivo + "): el campo obligatorio 'id' esta vacio o es un comodin");
                 continue;
             }
 
             String rut = valorOpcional(datos[1]);
 
             String nombre = datos[2].trim();
-            if (nombre.isEmpty()) {
+            if (esValorFaltante(nombre)) {
                 nombreVacio++;
                 System.out.println("Fila descartada (linea " + numeroLineaArchivo + " de "
-                        + rutaArchivo + "): el campo obligatorio 'nombre' esta vacio");
+                        + rutaArchivo + "): el campo obligatorio 'nombre' esta vacio o es un comodin");
                 continue;
             }
 
@@ -136,7 +142,7 @@ public class LectorCSV {
         imprimirResumenLectura(rutaArchivo, filasTotales, ciudadanos.size(), new int[] {
                 columnasIncorrectas, idVacio, nombreVacio, latitudInvalida, longitudInvalida
         }, new String[] {
-                "Numero de columnas incorrecto", "Campo 'id' vacio", "Campo 'nombre' vacio",
+                "Numero de columnas incorrecto", "Campo 'id' vacio o comodin", "Campo 'nombre' vacio o comodin",
                 "Campo 'latitud' invalido", "Campo 'longitud' invalido"
         });
 
@@ -180,7 +186,7 @@ public class LectorCSV {
 
             filasTotales++;
 
-            String[] datos = linea.split(",", -1);
+            String[] datos = dividirLineaCSV(linea);
 
             if (datos.length != COLUMNAS_COLEGIO) {
                 columnasIncorrectas++;
@@ -192,18 +198,18 @@ public class LectorCSV {
             }
 
             String codigo = datos[0].trim();
-            if (codigo.isEmpty()) {
+            if (esValorFaltante(codigo)) {
                 codigoVacio++;
                 System.out.println("Fila descartada (linea " + numeroLineaArchivo + " de "
-                        + rutaArchivo + "): el campo obligatorio 'codigo' esta vacio");
+                        + rutaArchivo + "): el campo obligatorio 'codigo' esta vacio o es un comodin");
                 continue;
             }
 
             String nombre = datos[1].trim();
-            if (nombre.isEmpty()) {
+            if (esValorFaltante(nombre)) {
                 nombreVacio++;
                 System.out.println("Fila descartada (linea " + numeroLineaArchivo + " de "
-                        + rutaArchivo + "): el campo obligatorio 'nombre' esta vacio");
+                        + rutaArchivo + "): el campo obligatorio 'nombre' esta vacio o es un comodin");
                 continue;
             }
 
@@ -252,7 +258,7 @@ public class LectorCSV {
         imprimirResumenLectura(rutaArchivo, filasTotales, colegios.size(), new int[] {
                 columnasIncorrectas, codigoVacio, nombreVacio, latitudInvalida, longitudInvalida, capacidadMaximaInvalida
         }, new String[] {
-                "Numero de columnas incorrecto", "Campo 'codigo' vacio", "Campo 'nombre' vacio",
+                "Numero de columnas incorrecto", "Campo 'codigo' vacio o comodin", "Campo 'nombre' vacio o comodin",
                 "Campo 'latitud' invalido", "Campo 'longitud' invalido", "Campo 'capacidadMaxima' invalido"
         });
 
@@ -260,13 +266,59 @@ public class LectorCSV {
     }
 
     /**
-     * Los campos opcionales (rut, comuna) no se descartan si vienen vacios: hoy ningun getter suyo se
-     * consulta fuera de esta clase, asi que se completan con un valor por defecto en vez de perder toda
-     * la fila por un dato que el programa no usa para calcular ni mostrar resultados.
+     * Separa una linea de texto en columnas por coma, respetando comas que aparezcan dentro de un
+     * campo entre comillas dobles. A diferencia de String.split(","), nunca descarta un campo vacio
+     * al final de la linea, porque siempre agrega el ultimo campo acumulado al terminar de recorrer
+     * la linea completa.
+     */
+    private static String[] dividirLineaCSV(String linea) {
+        ArrayList<String> campos = new ArrayList<String>();
+        StringBuilder campoActual = new StringBuilder();
+        boolean dentroDeComillas = false;
+
+        for (int i = 0; i < linea.length(); i++) {
+            char caracter = linea.charAt(i);
+
+            if (caracter == '"') {
+                dentroDeComillas = !dentroDeComillas;
+            } else if (caracter == ',' && !dentroDeComillas) {
+                campos.add(campoActual.toString());
+                campoActual = new StringBuilder();
+            } else {
+                campoActual.append(caracter);
+            }
+        }
+        campos.add(campoActual.toString());
+
+        String[] resultado = new String[campos.size()];
+        for (int i = 0; i < campos.size(); i++) {
+            resultado[i] = campos.get(i);
+        }
+        return resultado;
+    }
+
+    /**
+     * Un valor se considera "faltante" si esta vacio o si es uno de los comodines reconocidos en
+     * TOKENS_SIN_DATO (N/A, S/D, -, ?), sin importar mayusculas/minusculas ni espacios alrededor.
+     */
+    private static boolean esValorFaltante(String valorCrudo) {
+        String valorNormalizado = valorCrudo.trim().toUpperCase();
+        for (String token : TOKENS_SIN_DATO) {
+            if (valorNormalizado.equals(token)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Los campos opcionales (rut, comuna) no se descartan si vienen vacios o son un comodin: hoy
+     * ningun getter suyo se consulta fuera de esta clase, asi que se completan con un valor por
+     * defecto en vez de perder toda la fila por un dato que el programa no usa para calcular ni
+     * mostrar resultados.
      */
     private static String valorOpcional(String valorCrudo) {
-        String valor = valorCrudo.trim();
-        return valor.isEmpty() ? VALOR_OPCIONAL_POR_DEFECTO : valor;
+        return esValorFaltante(valorCrudo) ? VALOR_OPCIONAL_POR_DEFECTO : valorCrudo.trim();
     }
 
     /**
