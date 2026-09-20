@@ -1,0 +1,101 @@
+id,rut,nombre,comuna,latitud,longitud
+C000,10000000-0,Ciudadano Prueba 000,Santiago,-33.30000,-70.50000
+C001,10000001-1,Ciudadano Prueba 001,Santiago,-33.31000,-70.51000
+C002,10000002-2,Ciudadano Prueba 002,Santiago,-33.32000,-70.52000
+C003,10000003-3,Ciudadano Prueba 003,Santiago,-33.33000,-70.53000
+C004,10000004-4,Ciudadano Prueba 004,Santiago,-33.34000,-70.54000
+C005,10000005-5,Ciudadano Prueba 005,Santiago,-33.35000,-70.55000
+C006,10000006-6,Ciudadano Prueba 006,Santiago,-33.36000,-70.56000
+,10000007-7,Ciudadano Prueba 007,Santiago,-33.37000,-70.57000
+C008,10000008-8,,Santiago,-33.38000,-70.58000
+C009,10000009-9,Ciudadano Prueba 009,Santiago,-33.39000,-70.59000
+C010,10000010-0,Ciudadano Prueba 010,Santiago,-33.40000,-70.60000
+C011,10000011-1,Ciudadano Prueba 011,Santiago,-33.41000,-70.61000
+C012,10000012-2,Ciudadano Prueba 012,Santiago,-33.42000,-70.62000
+C013,10000013-3,Ciudadano Prueba 013,Santiago,-33.43000,-70.63000
+C014,10000014-4,Ciudadano Prueba 014,Santiago,-33.44000,-70.64000
+C015,10000015-5,Ciudadano Prueba 015,Santiago,-33.45000,-70.65000
+C016,10000016-6,Ciudadano Prueba 016,Santiago,-33.46000,-70.66000
+,10000017-7,Ciudadano Prueba 017,Santiago,-33.47000,-70.67000
+C018,10000018-8,,Santiago,-33.48000,-70.68000
+C019,10000019-9,Ciudadano Prueba 019,Santiago,-33.49000,-70.69000
+C020,10000020-0,Ciudadano Prueba 020,Santiago,-33.50000,-70.70000
+C021,10000021-1,Ciudadano Prueba 021,Santiago,-33.51000,-70.71000
+C022,10000022-2,Ciudadano Prueba 022,Santiago,-33.52000,-70.72000
+C023,10000023-3,Ciudadano Prueba 023,Santiago,-33.53000,-70.73000
+C024,10000024-4,Ciudadano Prueba 024,Santiago,-33.54000,-70.74000
+C025,10000025-5,Ciudadano Prueba 025,Santiago,-33.55000,-70.75000
+C026,10000026-6,Ciudadano Prueba 026,Santiago,-33.56000,-70.76000
+,10000027-7,Ciudadano Prueba 027,Santiago,-33.57000,-70.77000
+C028,10000028-8,,Santiago,-33.58000,-70.78000
+C029,10000029-9,Ciudadano Prueba 029,Santiago,-33.59000,-70.79000
+C030,10000030-0,Ciudadano Prueba 030,Santiago,-33.60000,-70.80000
+C031,10000031-1,Ciudadano Prueba 031,Santiago,-33.61000,-70.81000
+C032,10000032-2,Ciudadano Prueba 032,Santiago,-33.62000,-70.82000
+C033,10000033-3,Ciudadano Prueba 033,Santiago,-33.63000,-70.83000
+C034,10000034-4,Ciudadano Prueba 034,Santiago,-33.64000,-70.84000
+C035,10000035-5,Ciudadano Prueba 035,Santiago,-33.65000,-70.85000
+C036,10000036-6,Ciudadano Prueba 036,Santiago,-33.66000,-70.86000
+,10000037-7,Ciudadano Prueba 037,Santiago,-33.67000,-70.87000
+C038,10000038-8,,Santiago,-33.68000,-70.88000
+C039,10000039-9,Ciudadano Prueba 039,Santiago,-33.69000,-70.89000
+C040,10000040-0,Ciudadano Prueba 040,Santiago,-33.30000,-70.50000
+C041,10000041-1,Ciudadano Prueba 041,Santiago,-33.31000,-70.51000
+C042,10000042-2,Ciudadano Prueba 042,Santiago,-33.32000,-70.52000
+C043,10000043-3,Ciudadano Prueba 043,Santiago,-33.33000,-70.53000
+C044,10000044-4,Ciudadano Prueba 044,Santiago,-33.34000,-70.54000
+C045,10000045-5,Ciudadano Prueba 045,Santiago,-33.35000,-70.55000
+C046,10000046-6,Ciudadano Prueba 046,Santiago,-33.36000,-70.56000
+,10000047-7,Ciudadano Prueba 047,Santiago,-33.37000,-70.57000
+C048,10000048-8,,Santiago,-33.38000,-70.58000
+C049,10000049-9,Ciudadano Prueba 049,Santiago,-33.39000,-70.59000
+C050,10000050-0,Ciudadano Prueba 050,Santiago,-33.40000,-70.60000
+C051,10000051-1,Ciudadano Prueba 051,Santiago,-33.41000,-70.61000
+C052,10000052-2,Ciudadano Prueba 052,Santiago,-33.42000,-70.62000
+C053,10000053-3,Ciudadano Prueba 053,Santiago,-33.43000,-70.63000
+C054,10000054-4,Ciudadano Prueba 054,Santiago,-33.44000,-70.64000
+C055,10000055-5,Ciudadano Prueba 055,Santiago,-33.45000,-70.65000
+C056,10000056-6,Ciudadano Prueba 056,Santiago,-33.46000,-70.66000
+,10000057-7,Ciudadano Prueba 057,Santiago,-33.47000,-70.67000
+C058,10000058-8,,Santiago,-33.48000,-70.68000
+C059,10000059-9,Ciudadano Prueba 059,Santiago,-33.49000,-70.69000
+C060,10000060-0,Ciudadano Prueba 060,Santiago,-33.50000,-70.70000
+C061,10000061-1,Ciudadano Prueba 061,Santiago,-33.51000,-70.71000
+C062,10000062-2,Ciudadano Prueba 062,Santiago,-33.52000,-70.72000
+C063,10000063-3,Ciudadano Prueba 063,Santiago,-33.53000,-70.73000
+C064,10000064-4,Ciudadano Prueba 064,Santiago,-33.54000,-70.74000
+C065,10000065-5,Ciudadano Prueba 065,Santiago,-33.55000,-70.75000
+C066,10000066-6,Ciudadano Prueba 066,Santiago,-33.56000,-70.76000
+,10000067-7,Ciudadano Prueba 067,Santiago,-33.57000,-70.77000
+C068,10000068-8,,Santiago,-33.58000,-70.78000
+C069,10000069-9,Ciudadano Prueba 069,Santiago,-33.59000,-70.79000
+C070,10000070-0,Ciudadano Prueba 070,Santiago,-33.60000,-70.80000
+C071,10000071-1,Ciudadano Prueba 071,Santiago,-33.61000,-70.81000
+C072,10000072-2,Ciudadano Prueba 072,Santiago,-33.62000,-70.82000
+C073,10000073-3,Ciudadano Prueba 073,Santiago,-33.63000,-70.83000
+C074,10000074-4,Ciudadano Prueba 074,Santiago,-33.64000,-70.84000
+C075,10000075-5,Ciudadano Prueba 075,Santiago,-33.65000,-70.85000
+C076,10000076-6,Ciudadano Prueba 076,Santiago,-33.66000,-70.86000
+,10000077-7,Ciudadano Prueba 077,Santiago,-33.67000,-70.87000
+C078,10000078-8,,Santiago,-33.68000,-70.88000
+C079,10000079-9,Ciudadano Prueba 079,Santiago,-33.69000,-70.89000
+C080,10000080-0,Ciudadano Prueba 080,Santiago,-33.30000,-70.50000
+C081,10000081-1,Ciudadano Prueba 081,Santiago,-33.31000,-70.51000
+C082,10000082-2,Ciudadano Prueba 082,Santiago,-33.32000,-70.52000
+C083,10000083-3,Ciudadano Prueba 083,Santiago,-33.33000,-70.53000
+C084,10000084-4,Ciudadano Prueba 084,Santiago,-33.34000,-70.54000
+C085,10000085-5,Ciudadano Prueba 085,Santiago,-33.35000,-70.55000
+C086,10000086-6,Ciudadano Prueba 086,Santiago,-33.36000,-70.56000
+,10000087-7,Ciudadano Prueba 087,Santiago,-33.37000,-70.57000
+C088,10000088-8,,Santiago,-33.38000,-70.58000
+C089,10000089-9,Ciudadano Prueba 089,Santiago,-33.39000,-70.59000
+C090,10000090-0,Ciudadano Prueba 090,Santiago,-33.40000,-70.60000
+C091,10000091-1,Ciudadano Prueba 091,Santiago,-33.41000,-70.61000
+C092,10000092-2,Ciudadano Prueba 092,Santiago,-33.42000,-70.62000
+C093,10000093-3,Ciudadano Prueba 093,Santiago,-33.43000,-70.63000
+C094,10000094-4,Ciudadano Prueba 094,Santiago,-33.44000,-70.64000
+C095,10000095-5,Ciudadano Prueba 095,Santiago,-33.45000,-70.65000
+C096,10000096-6,Ciudadano Prueba 096,Santiago,-33.46000,-70.66000
+,10000097-7,Ciudadano Prueba 097,Santiago,-33.47000,-70.67000
+C098,10000098-8,,Santiago,-33.48000,-70.68000
+C099,10000099-9,Ciudadano Prueba 099,Santiago,-33.49000,-70.69000
