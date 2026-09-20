@@ -1,12 +1,22 @@
 /**
  * Representa el resultado de asignar (o intentar asignar) un ciudadano a un colegio.
+ *
+ * Los tres tipos posibles de asignacion se definen aqui como constantes en vez de
+ * repetir el texto literal en AsignadorVotacion (donde se asignan) y en Main (donde se
+ * comparan con .equals(...)): asi, un error de tipeo en cualquiera de los dos lugares lo
+ * detecta el compilador (nombre de constante mal escrito) en vez de fallar en silencio
+ * en tiempo de ejecucion, como pasaria comparando strings sueltos.
  */
 public class Asignacion {
+
+    public static final String NORMAL = "NORMAL";
+    public static final String EXCEPCIONAL_POR_DISTANCIA = "EXCEPCIONAL POR DISTANCIA";
+    public static final String SIN_ASIGNACION = "SIN ASIGNACION POR FALTA DE CUPOS";
 
     private Ciudadano ciudadano;
     private Colegio colegio;      // null si no hubo asignacion posible
     private double distanciaKm;   // distancia calculada con Haversine
-    private String tipo;          // "NORMAL", "EXCEPCIONAL POR DISTANCIA" o similar
+    private String tipo;          // NORMAL, EXCEPCIONAL_POR_DISTANCIA o SIN_ASIGNACION
 
     public Asignacion(Ciudadano ciudadano, Colegio colegio,
                       double distanciaKm, String tipo) {

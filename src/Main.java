@@ -92,9 +92,9 @@ public class Main {
 
         for (Asignacion asignacion : asignaciones) {
             // Cadena de condicionales para clasificar cada asignacion segun el texto guardado en el atributo "tipo"
-            if (asignacion.getTipo().equals("NORMAL")) {
+            if (asignacion.getTipo().equals(Asignacion.NORMAL)) {
                 normales++;
-            } else if (asignacion.getTipo().equals("EXCEPCIONAL POR DISTANCIA")) {
+            } else if (asignacion.getTipo().equals(Asignacion.EXCEPCIONAL_POR_DISTANCIA)) {
                 excepcionales++;
             } else {
                 sinAsignacion++;
