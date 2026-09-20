@@ -33,12 +33,12 @@ public class AsignadorVotacion {
 
             // Paso 3: intentar la asignacion NORMAL (colegio con cupo Y a <= 5 km). 
             ColegioDistancia seleccion = buscarAsignacionNormal(alternativas);
-            String tipo = "NORMAL";
+            String tipo = Asignacion.NORMAL;
 
             // Paso 4: si no hubo ninguna opcion normal, se relaja la regla de distancia y se busca solo por cupo (asignacion excepcional)
             if (seleccion == null) {
                 seleccion = buscarAsignacionExcepcional(alternativas);
-                tipo = "EXCEPCIONAL POR DISTANCIA";
+                tipo = Asignacion.EXCEPCIONAL_POR_DISTANCIA;
             }
 
             // Paso 5: segun si se encontro colegio o no, se arma la Asignacion final para este ciudadano
@@ -59,7 +59,7 @@ public class AsignadorVotacion {
                         ciudadano,
                         null,
                         -1,
-                        "SIN ASIGNACION POR FALTA DE CUPOS"
+                        Asignacion.SIN_ASIGNACION
                 );
                 asignaciones.add(asignacion);
             }
