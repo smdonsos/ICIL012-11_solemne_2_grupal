@@ -6,3 +6,6 @@ out/
 
 # Archivos del sistema
 .DS_Store
+
+# Instrucciones locales para Claude Code (no se versiona)
+CLAUDE.md
