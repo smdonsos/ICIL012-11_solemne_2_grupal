@@ -1,10 +1,12 @@
 /**
  * Representa a un ciudadano que debe ser asignado a un local de votacion.
- * Los datos de esta clase se cargan desde el archivo
+ * Los datos de esta clase se cargan desde el archivo. El objeto se construye una sola vez, con
+ * todos sus datos, y no cambia despues: no tiene setters porque ningun punto del programa necesita
+ * modificar un Ciudadano ya creado.
  */
 public class Ciudadano {
 
-    // Atributos privados: encapsulamiento. Nadie fuera de la clase puede modificar estos valores directamente, solo a traves de los setters.
+    // Atributos privados: encapsulamiento. Nadie fuera de la clase puede modificar estos valores directamente.
     private String id;
     private String rut;
     private String nombre;
@@ -47,30 +49,5 @@ public class Ciudadano {
 
     public double getLongitud() {
         return longitud;
-    }
-
-    // Setters: permiten modificar un atributo despues de creado el objeto
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setRut(String rut) {
-        this.rut = rut;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setComuna(String comuna) {
-        this.comuna = comuna;
-    }
-
-    public void setLatitud(double latitud) {
-        this.latitud = latitud;
-    }
-
-    public void setLongitud(double longitud) {
-        this.longitud = longitud;
     }
 }

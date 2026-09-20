@@ -1,5 +1,8 @@
 /**
  * Representa un local de votacion (colegio publico), con su ubicacion geografica y el control de cuantos ciudadanos tiene asignados hastam el momento. Los datos se cargan desde colegios_santiago.csv.
+ * El unico dato que cambia despues de creado el objeto es cantidadAsignados, y solo a traves de
+ * agregarCiudadano(): no tiene setters generales porque nada mas en el programa necesita modificar
+ * un Colegio ya creado.
  */
 public class Colegio {
 
@@ -65,30 +68,5 @@ public class Colegio {
 
     public int getCantidadAsignados() {
         return cantidadAsignados;
-    }
-
-    // Setters
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setComuna(String comuna) {
-        this.comuna = comuna;
-    }
-
-    public void setLatitud(double latitud) {
-        this.latitud = latitud;
-    }
-
-    public void setLongitud(double longitud) {
-        this.longitud = longitud;
-    }
-
-    public void setCapacidadMaxima(int capacidadMaxima) {
-        this.capacidadMaxima = capacidadMaxima;
     }
 }
