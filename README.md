@@ -1,0 +1,137 @@
+# Proyecto Solemne — Asignación de Ciudadanos a Locales de Votación
+
+Programa en Java que simula la asignación de ciudadanos a locales de votación
+(colegios) en Santiago, según cercanía geográfica y disponibilidad de cupos.
+Desarrollado como proyecto solemne para el curso **ICIL012-11 — Fundamentos de
+Programación**.
+
+## Descripción del problema
+
+Dado un listado de ciudadanos y un listado de locales de votación (cada uno
+con coordenadas geográficas y una capacidad máxima de personas), el programa
+debe asignar a cada ciudadano el local más adecuado siguiendo estas reglas:
+
+1. **Asignación normal**: se asigna al colegio válido más cercano (con cupo
+   disponible) que esté a **5 km o menos** de distancia.
+2. **Asignación excepcional por distancia**: si ningún colegio a 5 km o menos
+   tiene cupo, se relaja la restricción de distancia y se asigna al colegio
+   más cercano que aún tenga cupo disponible, sin importar la distancia.
+3. **Sin asignación**: si ningún colegio tiene cupo disponible, el ciudadano
+   queda registrado sin local asignado.
+
+La distancia entre un ciudadano y un colegio se calcula con la **fórmula de
+Haversine**, que estima la distancia entre dos puntos geográficos (latitud y
+longitud) sobre la superficie terrestre.
+
+## Arquitectura y clases
+
+El proyecto sigue un diseño orientado a objetos con responsabilidades
+separadas:
+
+| Clase | Responsabilidad |
+|---|---|
+| `Main` | Punto de entrada. Coordina lectura de datos, ejecuta la asignación y muestra los resultados por consola. No contiene lógica de negocio. |
+| `LectorCSV` | Lee los archivos `.csv` de ciudadanos y colegios y los transforma en listas de objetos `Ciudadano` / `Colegio`. |
+| `Ciudadano` | Modelo de datos: representa a una persona a asignar (id, rut, nombre, comuna, latitud, longitud). |
+| `Colegio` | Modelo de datos: representa un local de votación (código, nombre, comuna, coordenadas, capacidad máxima y cantidad de asignados actuales). Controla sus propios cupos (`tieneCupo()`, `agregarCiudadano()`). |
+| `CalculadoraDistancia` | Utilidad estática que implementa la fórmula de Haversine para calcular distancia en km entre dos coordenadas. |
+| `ColegioDistancia` | Clase auxiliar que empareja un `Colegio` con la distancia calculada hacia un ciudadano específico. |
+| `AsignadorVotacion` | Contiene la lógica de negocio: calcula alternativas, las ordena por distancia (Bubble Sort) y aplica las reglas de asignación normal / excepcional / sin cupo. |
+| `Asignacion` | Modelo de datos: resultado final de asignar (o no) un ciudadano a un colegio, con distancia y tipo de asignación. |
+
+### Flujo general
+
+```mermaid
+flowchart TD
+    A["CSV en datos/<br/>ciudadanos_santiago.csv<br/>colegios_santiago.csv"] --> B["LectorCSV"]
+    B --> C["List&lt;Ciudadano&gt;, List&lt;Colegio&gt;"]
+    C --> D["AsignadorVotacion"]
+    D --> E["Haversine<br/>(CalculadoraDistancia)"]
+    D --> F["Bubble Sort por distancia"]
+    D --> G["Reglas de cupo y distancia<br/>(normal / excepcional / sin cupo)"]
+    E --> H
+    F --> H
+    G --> H["List&lt;Asignacion&gt;"]
+    H --> I["Main<br/>detalle por ciudadano + resumen por colegio"]
+```
+
+## Datos de entrada
+
+Los datos se leen desde la carpeta [`datos/`](datos/):
+
+- **`ciudadanos_santiago.csv`**: columnas `id, rut, nombre, comuna, latitud, longitud`.
+- **`colegios_santiago.csv`**: columnas `codigo, nombre, comuna, latitud, longitud, capacidad_maxima`.
+
+Ambos archivos deben estar codificados en UTF-8 y usar coma como separador.
+
+## Requisitos
+
+- **JDK 21** (Java SE 21). El proyecto está configurado explícitamente para
+  este nivel de compilación tanto en Eclipse (`.classpath`,
+  `.settings/org.eclipse.jdt.core.prefs`) como en IntelliJ IDEA (`.iml`,
+  `.idea/misc.xml`).
+
+## Cómo ejecutar
+
+### Desde una IDE (Eclipse / IntelliJ IDEA)
+
+1. Importar el proyecto (`File > Open` en IntelliJ, o `Import Existing
+   Project` en Eclipse).
+2. Asegurarse de que el proyecto use un SDK JDK 21 (ver sección de
+   requisitos).
+3. Ejecutar la clase `Main`.
+
+### Desde la línea de comandos
+
+Desde la raíz del proyecto:
+
+```bash
+javac -d bin src/*.java
+java -cp bin Main
+```
+
+> El programa asume que se ejecuta desde la raíz del proyecto, ya que las
+> rutas a los CSV (`datos/ciudadanos_santiago.csv` y
+> `datos/colegios_santiago.csv`) están escritas como rutas relativas en
+> `Main.java`.
+
+## Salida esperada
+
+El programa imprime dos secciones por consola:
+
+1. **Detalle de asignación**: para cada ciudadano, el local asignado (o
+   "SIN LOCAL DISPONIBLE"), la distancia en km y el tipo de asignación.
+2. **Resumen final**: totales de asignaciones normales, excepcionales y sin
+   asignar, además de la ocupación (cupos usados / capacidad máxima) de cada
+   colegio.
+
+## Manejo de errores
+
+`Main` centraliza el manejo de errores en un único bloque `try/catch`:
+
+- `IOException`: archivo CSV inexistente o inaccesible.
+- `NumberFormatException`: un valor numérico (latitud, longitud, capacidad)
+  viene mal formado en el CSV.
+- `Exception` (genérico): red de seguridad para cualquier error no previsto,
+  evitando que el programa termine de forma abrupta.
+
+## Estructura del repositorio
+
+```
+proyecto_solemne/
+├── src/                      # Código fuente Java
+│   ├── Main.java
+│   ├── LectorCSV.java
+│   ├── Ciudadano.java
+│   ├── Colegio.java
+│   ├── CalculadoraDistancia.java
+│   ├── ColegioDistancia.java
+│   ├── AsignadorVotacion.java
+│   └── Asignacion.java
+├── datos/                    # Archivos CSV de entrada
+│   ├── ciudadanos_santiago.csv
+│   └── colegios_santiago.csv
+├── bin/                      # Clases compiladas (salida de build)
+├── .classpath / .project / .settings/   # Configuración Eclipse
+└── proyecto_solemne.iml / .idea/        # Configuración IntelliJ IDEA
+```

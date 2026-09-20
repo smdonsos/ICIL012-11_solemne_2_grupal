@@ -1,0 +1,19 @@
+﻿id,rut,nombre,comuna,latitud,longitud
+C01,11.111.111-1,Ana Morales,Santiago,-33.4489,-70.6693
+C02,12.222.222-2,Diego Rojas,Santiago,-33.4372,-70.6506
+C03,13.333.333-3,Camila Fuentes,Estación Central,-33.4569,-70.6980
+C04,14.444.444-4,Matías Herrera,Independencia,-33.4198,-70.6554
+C05,15.555.555-5,Valentina Soto,Recoleta,-33.4067,-70.6430
+C06,16.666.666-6,Nicolás Araya,Providencia,-33.4314,-70.6093
+C07,17.777.777-7,Francisca Vega,Providencia,-33.4263,-70.6170
+C08,18.888.888-8,Sebastián Muñoz,Ñuñoa,-33.4569,-70.5935
+C09,19.999.999-9,Javiera Paredes,Ñuñoa,-33.4668,-70.5980
+C10,20.111.111-0,Tomás Castillo,Macul,-33.4860,-70.5992
+C11,21.222.222-1,Antonia Silva,La Florida,-33.5227,-70.5982
+C12,22.333.333-2,Felipe González,La Florida,-33.5321,-70.5900
+C13,23.444.444-3,Catalina Reyes,La Granja,-33.5376,-70.6258
+C14,24.555.555-4,Ignacio Torres,Maipú,-33.5102,-70.7560
+C15,25.666.666-5,Martina Contreras,Maipú,-33.4975,-70.7640
+C16,26.777.777-6,Benjamín López,Puente Alto,-33.6117,-70.5755
+C17,27.888.888-7,Emilia Navarro,Puente Alto,-33.5984,-70.5793
+C18,28.999.999-8,Cristóbal Medina,Pirque,-33.6361,-70.5710

@@ -1,0 +1,8 @@
+# Salida de compilación
+bin/
+classes/
+out/
+*.class
+
+# Archivos del sistema
+.DS_Store
