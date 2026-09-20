@@ -20,6 +20,7 @@ public class Main {
         try {
 
             // 1) Lectura de los CSV: se transforma cada linea de texto en objetos Ciudadano y Colegio.
+            // Cada lectura imprime su propio resumen (filas totales, correctas y detalle de fallos).
             ArrayList<Ciudadano> ciudadanos = LectorCSV.leerCiudadanos(rutaCiudadanos);
             ArrayList<Colegio> colegios = LectorCSV.leerColegios(rutaColegios);
 
