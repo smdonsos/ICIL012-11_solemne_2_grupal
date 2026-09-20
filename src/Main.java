@@ -25,7 +25,10 @@ public class Main {
             ArrayList<Colegio> colegios = LectorCSV.leerColegios(rutaColegios);
 
             // 2) Se delega toda la logica de asignacion (distancia, cupos, reglas de negocio) a la clase AsignadorVotacion.
-            AsignadorVotacion asignador = new AsignadorVotacion();
+            // La distancia maxima (5 km) queda en ConfiguracionAsignacion en vez de una constante fija,
+            // para poder ajustarla a futuro sin tocar AsignadorVotacion.
+            ConfiguracionAsignacion configuracion = new ConfiguracionAsignacion();
+            AsignadorVotacion asignador = new AsignadorVotacion(configuracion);
             ArrayList<Asignacion> asignaciones = asignador.asignarCiudadanos(ciudadanos, colegios);
 
             // 3) Se muestran los resultados en dos vistas: detalle y resumen.

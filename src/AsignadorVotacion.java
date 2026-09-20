@@ -2,16 +2,22 @@ import java.util.ArrayList;
 
 
  // * Aqui se aplican las reglas de negocio del enunciado: distancia maxima, cupos disponibles, y el orden de prioridad entre asignacion normal, excepcional, o sin asignar.
+ //
+ // A diferencia de LectorCSV y CalculadoraDistancia (utilidades sin estado, por eso son
+ // estaticas), AsignadorVotacion SI tiene estado propio: la ConfiguracionAsignacion que
+ // recibe en el constructor. Por eso se instancia con 'new' en vez de usar metodos
+ // estaticos.
 
 public class AsignadorVotacion {
 
-    // Distancia limite (en km) para que una asignacion se considere "normal".
-    // Es 'static final' porque es una regla fija del problema, no cambia entre ejecuciones ni entre objetos.
-    private static final double DISTANCIA_MAXIMA_NORMAL = 5.0;
+    private final ConfiguracionAsignacion configuracion;
 
- 
-    // * Metodo principal: recorre todos los ciudadanos y le busca colegio a cada uno, devolviendo la lista completa de asignaciones 
-     
+    public AsignadorVotacion(ConfiguracionAsignacion configuracion) {
+        this.configuracion = configuracion;
+    }
+
+    // * Metodo principal: recorre todos los ciudadanos y le busca colegio a cada uno, devolviendo la lista completa de asignaciones
+
     public ArrayList<Asignacion> asignarCiudadanos(ArrayList<Ciudadano> ciudadanos,
                                                     ArrayList<Colegio> colegios) {
         ArrayList<Asignacion> asignaciones = new ArrayList<Asignacion>();
@@ -107,7 +113,7 @@ public class AsignadorVotacion {
 
     private ColegioDistancia buscarAsignacionNormal(ArrayList<ColegioDistancia> alternativas) {
         for (ColegioDistancia alternativa : alternativas) {
-            if (alternativa.getDistancia() <= DISTANCIA_MAXIMA_NORMAL
+            if (alternativa.getDistancia() <= configuracion.getDistanciaMaximaKm()
                     && alternativa.getColegio().tieneCupo()) {
                 return alternativa;
             }
